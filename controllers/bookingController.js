@@ -44,9 +44,9 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     session,
   });
 
-  console.log(
-    `${req.protocol}://${req.get('host')}/img/tours/${tour.imageCover}`,
-  );
+  // console.log(
+  //   `${req.protocol}://${req.get('host')}/img/tours/${tour.imageCover}`,
+  // );
 });
 
 exports.createBookingCheckout = catchAsync(async (req, res, next) => {

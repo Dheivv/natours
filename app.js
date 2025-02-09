@@ -4,9 +4,10 @@ const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
-// const xssFilters = require('xss-filters'); non so come dio bestia funziona 😭😭😭
+// const xssFilters = require('xss-filters');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 const AppError = require('./utils/appError.js');
 const globalErrorHandler = require('./controllers/errorController.js');
@@ -97,6 +98,9 @@ app.use(
     ],
   }),
 );
+
+// Compress text sent to the client
+app.use(compression());
 
 // Test middleware
 app.use((req, res, next) => {
