@@ -4,7 +4,8 @@
   "description": "Learning node, express and mongoDB",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
+    "start:dev": "nodemon server.js",
     "start:prod": "cross-env NODE_ENV=production nodemon server.js",
     "dev-data:import": "node dev-data/data/import-dev-data.js --import",
     "dev-data:delete": "node dev-data/data/import-dev-data.js --delete",
