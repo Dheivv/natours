@@ -17,7 +17,7 @@ module.exports = class Email {
     // PRODUCTION
     // Use Sendgrid to send email to user.email
     if (process.env.NODE_ENV === 'production') {
-      process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+      // process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
       return nodemailer.createTransport({
         service: 'SendGrid',
         auth: {
