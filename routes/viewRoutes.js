@@ -1,13 +1,13 @@
 const express = require('express');
-const viewsController = require('./../controllers/viewsController.js');
-const authController = require('./../controllers/authController.js');
-const bookingController = require('./../controllers/bookingController.js');
+const viewsController = require('../controllers/viewsController.js');
+const authController = require('../controllers/authController.js');
+const bookingController = require('../controllers/bookingController.js');
 
 const router = express.Router();
 
 router.get(
   '/',
-  bookingController.createBookingCheckout,
+  // bookingController.createBookingCheckout,
   authController.isLoggedIn,
   viewsController.getOverview,
 );
