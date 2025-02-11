@@ -89,3 +89,9 @@ exports.updateUserData = catchAsync(async (req, res, next) => {
     user: updatedUser,
   });
 });
+
+exports.getAdditionalInfo = (req, res, next) => {
+  res.status(200).render('additionalInfo', {
+    title: 'Additional Info',
+  });
+};

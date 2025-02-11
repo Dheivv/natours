@@ -5,6 +5,7 @@ import { login, logout } from './login.js';
 import { updateSettings } from './updateSettings.js';
 import { bookTour } from './stripe.js';
 import { showAlert } from './alerts.js';
+import { additionalInfo } from './additionalInfo.js';
 
 // DOM ELEMENTS
 const mapBox = document.getElementById('map');
@@ -13,6 +14,7 @@ const logOutBtn = document.querySelector('.nav__el--logout');
 const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
 const bookBtn = document.getElementById('book-tour');
+const footerLinks = document.querySelector('.footer__nav');
 
 // DELEGATION
 if (mapBox) {
@@ -74,3 +76,7 @@ if (bookBtn) {
 
 const alertMessage = document.querySelector('body').dataset.alert;
 if (alertMessage && alertMessage != '') showAlert('success', alertMessage, 20);
+
+footerLinks.addEventListener('click', () => {
+  additionalInfo();
+});
