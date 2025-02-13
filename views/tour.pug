@@ -87,8 +87,21 @@ block content
       .cta__content
         h2.heading-secondary What are you waiting for?
         p.cta__text= `${tour.duration} days. 1 adventure. Infinite memories. Make it yours today!`
+        
+        - const is_in = [];
+        - if (user) {
+        -   for (let i = 0; i <= booking.length - 1; i++) {
+        -     is_in.push(user.id.includes(booking[i].user.id));
+        -   } 
+        - }
 
-        if user
-          button.btn.btn--green.span-all-rows#book-tour(data-tour-id=`${tour.id}`) Book tour now!
-        else
+        if user && (is_in.includes(true) === false || too_late.includes(false) === false) 
+          button.btn.btn--green.span-all-rows#book-tour(data-tour-id=`${tour.id}`) Book tour now!  
+        if user && is_in.includes(true) && too_late.includes(false) === true
+          a.btn.btn--green.span-all-rows#go-to-my-bookings(href='/my-tours') Go to My bookings 
+        if !user
           a.btn.btn--green.span-all-rows(href='/login') Log in to book tour
+
+        
+        
+  

@@ -123,6 +123,7 @@ body {
   );
   background-image: linear-gradient(to right, #7dd56f, #28b487);
   -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
   letter-spacing: 0.1rem;
   line-height: 1.3;
@@ -332,6 +333,16 @@ body {
     order: -1;
     margin-bottom: 1.5rem;
   }
+}
+
+.logo img {
+  display: block;
+  margin-top: 25px;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: 150px;
+  width: auto;
+  height: 300px;
 }
 
 .section-header {
