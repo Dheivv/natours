@@ -83,9 +83,24 @@ exports.getMyTours = catchAsync(async (req, res, next) => {
   const tourIDs = bookings.map((el) => el.tour);
   const tours = await Tour.find({ _id: { $in: tourIDs } });
 
-  res.status(200).render('overview', {
+  const too_late = {};
+  for (let i = 0; i <= tours.length - 1; i++) {
+    const startDatesList = [];
+
+    for (let j = 0; j <= tours[i].startDates.length - 1; j++) {
+      startDatesList.push(
+        Date.now() / 1000 >
+          parseInt(tours[i].startDates[j].getTime() / 1000, 10),
+      );
+    }
+
+    too_late[tours[i].id] = startDatesList;
+  }
+
+  res.status(200).render('myTours', {
     title: 'My Tours',
-    tours,
+    tours: tours,
+    too_late: too_late,
   });
 });
 

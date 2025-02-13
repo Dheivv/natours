@@ -262,7 +262,23 @@ body {
   border: none;
 }
 
-.btn-small:hover {
+.btn-very-small {
+  background-color: #55c57a;
+  color: #fff;
+  font-size: 1rem;
+  padding: 1.25rem 1.25rem;
+  border-radius: 10rem;
+  position: relative;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 400;
+  border: none;
+}
+
+.btn-small:hover,
+.btn-very-small:hover {
   background-color: #7dd56f;
 }
 

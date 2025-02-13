@@ -17,6 +17,9 @@ const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
 const bookBtn = document.getElementById('book-tour');
 const footerLinks = document.querySelector('.footer__nav');
+const deleteExpiredBookingBtn = document.querySelectorAll(
+  '.btn-very-small.delete-expired-booking',
+);
 
 // DELEGATION
 if (mapBox) {
@@ -92,4 +95,19 @@ if (alertMessage && alertMessage != '') showAlert('success', alertMessage, 20);
 
 footerLinks.addEventListener('click', () => {
   additionalInfo();
+});
+
+[...deleteExpiredBookingBtn].forEach((item) => {
+  try {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const confirmation = confirm(
+        "Delete expired booking from 'My bookings'?",
+      );
+      if (confirmation) item.parentElement.parentElement.style.display = 'none';
+      showAlert('success', 'Booking deleted from list!');
+    });
+  } catch (err) {
+    showAlert('error', err.response.data.message);
+  }
 });
