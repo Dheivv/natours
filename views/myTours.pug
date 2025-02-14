@@ -2,21 +2,20 @@ extends base
 
 block content 
     main.main 
-        .card-container
+        .card-container       
 
             each tour in tours
-                .card#my-tours  
+                .card
                     .card__header 
                         if too_late[tour.id].includes(false) === true
 
-                        else 
-                            a.btn-very-small.delete-expired-booking(id=`${tour.id}`) x
+                        //-else 
+                            a.btn-very-small x
 
                         .card__picture
                             .card__picture-overlay &nbsp;
                             img.card__picture-img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
                         
-                        //-console.log(too_late);
                         if too_late[tour.id].includes(false) === true
                             h3.heading-tertirary
                                 span= tour.name
