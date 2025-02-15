@@ -9,8 +9,8 @@ block content
                     .card__header 
                         if too_late[tour.id].includes(false) === true
 
-                        //-else 
-                            a.btn-very-small x
+                        else 
+                            a.btn-very-small(id=`${tour.slug}`) HIDE
 
                         .card__picture
                             .card__picture-overlay &nbsp;
@@ -63,3 +63,4 @@ block content
                             a.btn.btn--green.btn--small(href=`/tour/${tour.slug}`) Details
                         
                         else
+                            a.btn.btn--green.btn--small(href='#') Leave review

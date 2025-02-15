@@ -95,21 +95,21 @@ footerLinks.addEventListener('click', () => {
   additionalInfo();
 });
 
-/*
 [...deleteExpiredBookingBtn].forEach((item) => {
-  item.addEventListener('click', (e) => {
+  item.addEventListener('click', async (e) => {
     e.preventDefault();
-    const confirmation = confirm("Delete expired booking from 'My bookings'?");
+    const confirmHide = await confirm('Hide expired booking card?');
 
-    if (confirmation) {
+    if (confirmHide) {
       item.parentElement.parentElement.style.display = 'none';
       // console.log(item.parentElement.parentElement);
-      showAlert('success', 'Booking deleted from list!');
+      showAlert('success', 'Booking card hidden from list');
       window.localStorage.setItem(`display option for ${item}`, 'none');
     }
   });
 });
 
+/*
 window.addEventListener('load', (e) => {
   e.preventDefault();
   [...deleteExpiredBookingBtn].forEach((item) => {

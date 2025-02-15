@@ -1,0 +1,11 @@
+extends base
+include _reviewCard
+
+block content
+  section
+    .reviews
+      each review in reviews
+        +reviewCard(review)
+      
+      //-each tour in tours 
+        //-a.btn.btn--green.btn--small(href=`/tour/${tour.slug}`) Details

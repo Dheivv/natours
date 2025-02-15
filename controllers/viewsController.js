@@ -1,9 +1,11 @@
 const Tour = require('../models/tourModel.js');
 const User = require('../models/userModel.js');
+const Review = require('../models/reviewModel.js');
 const Booking = require('../models/bookingModel.js');
 const catchAsync = require('../utils/catchAsync.js');
 const AppError = require('../utils/appError.js');
 const authController = require('./authController.js');
+const { Reviews } = require('stripe/lib/resources.js');
 
 exports.alerts = (req, res, next) => {
   const { alert } = req.query;
@@ -101,6 +103,18 @@ exports.getMyTours = catchAsync(async (req, res, next) => {
     title: 'My Tours',
     tours: tours,
     too_late: too_late,
+  });
+});
+
+exports.getMyReviews = catchAsync(async (req, res, next) => {
+  const reviews = await Review.find({ user: req.user.id });
+  //const tourIDs = reviews.map((el) => el.tour);
+  //const tours = await Tour.find({ _id: { $in: tourIDs } });
+
+  res.status(200).render('myReviews', {
+    title: 'My reviews',
+    reviews: reviews,
+    //tours: tours,
   });
 });
 
