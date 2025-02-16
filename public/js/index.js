@@ -4,6 +4,7 @@ import { displayMap } from './mapbox.js';
 import { login, logout } from './login.js';
 import { signup } from './signup.js';
 import { updateSettings } from './updateSettings.js';
+import { leaveReview } from './leaveReview.js';
 import { bookTour } from './stripe.js';
 import { showAlert } from './alerts.js';
 import { additionalInfo } from './additionalInfo.js';
@@ -13,6 +14,7 @@ const mapBox = document.getElementById('map');
 const loginForm = document.querySelector('.form--login');
 const logOutBtn = document.querySelector('.nav__el--logout');
 const signupForm = document.querySelector('.form--signup');
+const reviewForm = document.querySelector('.form--review');
 const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
 const bookBtn = document.getElementById('book-tour');
@@ -77,6 +79,19 @@ if (userPasswordForm) {
     document.getElementById('password-current').value = '';
     document.getElementById('password').value = '';
     document.getElementById('password-confirm').value = '';
+  });
+}
+
+if (reviewForm) {
+  reviewForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const review = document.getElementById('review').value;
+    const rating = document.getElementById('rating').value;
+    const tour = window.location.pathname.split('/')[2];
+    const user = document.getElementById('leave-review').dataset.id;
+
+    await leaveReview(review, rating, tour, user);
   });
 }
 

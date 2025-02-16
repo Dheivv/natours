@@ -58,9 +58,11 @@ block content
                             span.card__footer-value= tour.ratingsAverage
                             | 
                             span.card__footer-text= `rating (${tour.ratingsQuantity})`
-                        
+
                         if too_late[tour.id].includes(false) === true
                             a.btn.btn--green.btn--small(href=`/tour/${tour.slug}`) Details
                         
                         else
-                            a.btn.btn--green.btn--small(href='#') Leave review
+                            a.btn.btn--green.btn--small(href=`/leave-review/${tour.id}`) Leave review
+    
+                        

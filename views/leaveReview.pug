@@ -1,0 +1,15 @@
+extends base
+
+block content
+  main.main
+    .review-form
+      h2.heading-secondary.ma-bt-lg Leave a review
+      form.form.form--review#leave-review(data-ID=userID)
+        .form__group.ma-bt-md
+          label.form__label(for='rating') Rating
+          input#rating.form__input(type='text', placeholder='3.5, 4, 4.5 ...', required, minlength='1')
+        .form__group
+          label.form__label(for='review') Review text
+          input#review.form__input(type='text', placeholder='Amazing tour!', required, minlength='3')
+        .form__group
+          button.btn.btn--green Confirm

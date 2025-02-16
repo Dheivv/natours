@@ -1,11 +1,9 @@
 extends base
-include _reviewCard
+include _reviewCardMyReviews
 
 block content
   section
     .reviews
-      each review in reviews
-        +reviewCard(review)
+      each review, tour in reviews
+          +reviewCardMyReviews(review, tours[tour])
       
-      //-each tour in tours 
-        //-a.btn.btn--green.btn--small(href=`/tour/${tour.slug}`) Details
