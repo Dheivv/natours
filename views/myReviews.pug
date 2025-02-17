@@ -4,6 +4,10 @@ include _reviewCardMyReviews
 block content
   section
     .reviews
-      each review, tour in reviews
+      if reviews.length < 1
+        h.reviews__text(style='text-align:center; font-size:40px')  Uh oh, looks like it's empty!
+      
+      else
+        each review, tour in reviews
           +reviewCardMyReviews(review, tours[tour])
       

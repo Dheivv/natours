@@ -81,6 +81,7 @@ exports.getMyTours = catchAsync(async (req, res, next) => {
   const bookings = await Booking.find({ user: req.user.id });
   const tourIDs = bookings.map((el) => el.tour);
   const tours = await Tour.find({ _id: { $in: tourIDs } });
+  const reviews = await Review.find({ tour: { $in: tourIDs } });
 
   const too_late = {};
   for (let i = 0; i <= tours.length - 1; i++) {
@@ -99,6 +100,7 @@ exports.getMyTours = catchAsync(async (req, res, next) => {
   res.status(200).render('myTours', {
     title: 'My Tours',
     tours: tours,
+    reviews: reviews,
     too_late: too_late,
   });
 });
