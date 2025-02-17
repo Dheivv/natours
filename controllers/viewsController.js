@@ -81,7 +81,11 @@ exports.getMyTours = catchAsync(async (req, res, next) => {
   const bookings = await Booking.find({ user: req.user.id });
   const tourIDs = bookings.map((el) => el.tour);
   const tours = await Tour.find({ _id: { $in: tourIDs } });
-  const reviews = await Review.find({ tour: { $in: tourIDs } });
+  const reviews = await Review.find({
+    user: req.user.id,
+  });
+  const reviewedTours = reviews.map((el) => el.tour);
+  const reviewedToursIDs = reviewedTours.map((el) => el.id);
 
   const too_late = {};
   for (let i = 0; i <= tours.length - 1; i++) {
@@ -101,6 +105,7 @@ exports.getMyTours = catchAsync(async (req, res, next) => {
     title: 'My Tours',
     tours: tours,
     reviews: reviews,
+    reviewedToursIDs: reviewedToursIDs,
     too_late: too_late,
   });
 });

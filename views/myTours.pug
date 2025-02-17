@@ -4,7 +4,7 @@ block content
     main.main 
         .card-container       
 
-            each tour, review in tours
+            each tour in tours
                 .card
                     .card__header 
                         if too_late[tour.id].includes(false) === true
@@ -59,7 +59,8 @@ block content
                             | 
                             span.card__footer-text= `rating (${tour.ratingsQuantity})`
                         
-                        if reviews[review].tour != tour.id 
+                        
+                        if reviewedToursIDs.includes(tour.id) === false
 
                             if too_late[tour.id].includes(false) === true
                                 a.btn.btn--green.btn--small(href=`/tour/${tour.slug}`) Details
@@ -68,4 +69,4 @@ block content
                                 a.btn.btn--green.btn--small(href=`/leave-review/${tour.id}`) Leave review
                         
                         else
-                                a.btn.btn--green.btn--small(href='/my-reviews' style='text-align:center') Go to My reviews
+                            a.btn.btn--green.btn--small(href='/my-reviews' style='text-align:center') Go to My reviews
