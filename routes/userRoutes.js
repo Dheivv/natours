@@ -27,6 +27,8 @@ router.delete('/deleteMe', userController.deleteMe);
 // Restrict all routes to admin after this middleware
 router.use(authController.restrictTo('admin'));
 
+router.patch('/activateAccount/:id', userController.activateUser);
+
 router
   .route('/')
   .get(userController.getAllUsers)

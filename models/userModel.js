@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please confirm your password'],
     validate: {
-      // This only works on CREATE and SAVE!!!
+      // This only works on CREATE and SAVE
       validator: function (el) {
         return el === this.password;
       },
@@ -46,8 +46,10 @@ const userSchema = new mongoose.Schema({
   passwordResetExpires: Date,
   active: {
     type: Boolean,
-    default: true,
-    select: false,
+    default: function () {
+      if (this.role === 'user') return false;
+      else return true;
+    },
   },
 });
 
@@ -70,12 +72,14 @@ userSchema.pre('save', function (next) {
   next();
 });
 
+/*
 userSchema.pre(/^find/, function (next) {
   // 'this' points to current query
   this.find({ active: { $ne: false } });
 
   next();
 });
+*/
 
 userSchema.methods.correctPassword = async function (
   candidatePassword,

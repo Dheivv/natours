@@ -39,15 +39,15 @@ exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create({
     name: req.body.name,
     email: req.body.email,
-    roles: req.body.role,
+    //roles: req.body.role,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
-    passwordChangedAt: req.body.passwordChangedAt,
-    passwordResetToken: req.passwordResetToken,
-    passwordResetExpires: req.passwordResetExpires,
+    //passwordChangedAt: req.body.passwordChangedAt,
+    //passwordResetToken: req.passwordResetToken,
+    //passwordResetExpires: req.passwordResetExpires,
   });
 
-  const url = `${req.protocol}://${req.get('host')}/me`;
+  const url = `${req.protocol}://${req.get('host')}/verify-your-account`;
   await new Email(newUser, url).sendWelcome();
 
   createSendToken(newUser, 201, req, res);
@@ -161,6 +161,27 @@ exports.isLoggedIn = async (req, res, next) => {
 
   next();
 };
+
+exports.isVerified = catchAsync(async (req, res, next) => {
+  if (req.cookies.jwt) {
+    const decodedJWT = await promisify(jwt.verify)(
+      req.cookies.jwt,
+      process.env.JWT_SECRET,
+    );
+
+    const newUser = await User.findById(decodedJWT.id);
+    if (newUser.active === false) {
+      return next(
+        new AppError(
+          'This account is not verified. Please check your signup email and activate your account',
+          401,
+        ),
+      );
+    }
+  }
+
+  next();
+});
 
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {

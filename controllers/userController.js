@@ -90,6 +90,27 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.activateUser = catchAsync(async (req, res, next) => {
+  const filter = req.params.id;
+  const update = { active: true };
+
+  const user = await User.findOne({ _id: filter });
+  if (user.active === true) {
+    return next(new AppError('This user is already active!', 400));
+  }
+
+  const activatedUser = await User.findByIdAndUpdate(filter, update, {
+    new: true,
+  });
+
+  res.status(200).json({
+    status: 'success',
+    user: {
+      activatedUser,
+    },
+  });
+});
+
 exports.deleteMe = catchAsync(async (req, res, next) => {
   await User.findByIdAndUpdate(req.user.id, { active: false });
 

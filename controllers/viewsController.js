@@ -148,6 +148,14 @@ exports.updateUserData = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getAccountVerification = catchAsync(async (req, res, next) => {
+  await User.findByIdAndUpdate(req.user.id, { active: true }, { new: true });
+
+  res.status(200).render('accountVerification', {
+    title: 'Verify your account',
+  });
+});
+
 exports.getAdditionalInfo = (req, res, next) => {
   res.status(200).render('additionalInfo', {
     title: 'Additional Info',
