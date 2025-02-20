@@ -50,11 +50,12 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 
 const createBookingCheckout = catchAsync(async (session) => {
   const tour = session.client_reference_id;
-  const user = (await User.findOne({ email: session.customer_email })).id;
+  const user = await User.findOne({ email: session.customer_email });
+  const userId = user.id;
   const price = session.amount_subtotal / 100;
   const url = 'https://natours-jgt3.onrender.com/my-tours';
 
-  await Booking.create({ tour, user, price });
+  await Booking.create({ tour: tour, user: userId, price: price });
   await new Email(user, url).sendPurchaseConfirmation();
 });
 
