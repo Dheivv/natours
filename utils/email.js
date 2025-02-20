@@ -71,4 +71,8 @@ module.exports = class Email {
       'Your password reset token (valid only for 10 minutes)',
     );
   }
+
+  async sendPurchaseConfirmation() {
+    await this.send('newBooking', 'New booking confirmation');
+  }
 };

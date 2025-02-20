@@ -84,6 +84,7 @@ exports.getMyTours = catchAsync(async (req, res, next) => {
   const reviews = await Review.find({
     user: req.user.id,
   });
+
   const reviewedTours = reviews.map((el) => el.tour);
   const reviewedToursIDs = reviewedTours.map((el) => el.id);
 

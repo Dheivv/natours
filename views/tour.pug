@@ -101,10 +101,17 @@ block content
               
         if in_time_to_book.includes(true) === true
 
-          if user && (is_in.includes(true) === false || too_late.includes(false) === false) 
-            button.btn.btn--green.span-all-rows#book-tour(data-tour-id=`${tour.id}`) Book tour now!  
+          if user && (is_in.includes(true) === false || too_late.includes(false) === false)
+              each startDate in tour.startDates
+                div(style='display:grid; margin:auto; width:80%')
+                  if ((Date.now() / 1000) + 7 * 86400) < (startDate.getTime() / 1000 )
+                    button.btn.btn--green.span-all-rows#book-tour(style='text-align:center; top:auto; margin:auto; padding:auto; width:80%; height:auto; display:inline-block', data-tourDate=`${startDate}`)=`Book tour for ${startDate.toLocaleDateString('en-US')} now!` 
+                  else 
+                    button.btn.btn--green.span-all-rows(style='text-align:center; top:auto; margin:auto; padding:auto; width:80%; height:auto; display:inline-block', data-tourDate=`${tourDate}`)=`This date is no longer available! (${startDate.toLocaleDateString('en-US')})` 
+
           if user && is_in.includes(true) && too_late.includes(false) === true
             a.btn.btn--green.span-all-rows#go-to-my-bookings(href='/my-tours') Go to My bookings 
+
           if !user
             a.btn.btn--green.span-all-rows(href='/login') Log in to book tour
 
