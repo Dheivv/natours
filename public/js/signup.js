@@ -2,7 +2,13 @@
 import axios from 'axios';
 import { showAlert } from './alerts.js';
 
-export const signup = async (name, email, password, passwordConfirm) => {
+export const signup = async (
+  name,
+  email,
+  password,
+  passwordConfirm,
+  button,
+) => {
   try {
     const res = await axios({
       method: 'POST',
@@ -21,11 +27,13 @@ export const signup = async (name, email, password, passwordConfirm) => {
         'success',
         'Signed up successfully! Check your email for confirmation',
       );
+      button.textContent = 'Signup';
       window.setTimeout(() => {
         location.assign('/');
       }, 1500);
     }
   } catch (err) {
     showAlert('error', err.response.data.message);
+    button.textContent = 'Signup';
   }
 };

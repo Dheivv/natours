@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { showAlert } from './alerts.js';
 
-export const login = async (email, password) => {
+export const login = async (email, password, button) => {
   try {
     const res = await axios({
       method: 'POST',
@@ -16,12 +16,14 @@ export const login = async (email, password) => {
     // console.log(res);
     if (res.data.status === 'success') {
       showAlert('success', 'Logged in successfully!');
+      button.textContent = 'Login';
       window.setTimeout(() => {
         location.assign('/');
       }, 1500);
     }
   } catch (err) {
     showAlert('error', err.response.data.message);
+    button.textContent = 'Login';
   }
 };
 

@@ -85,8 +85,8 @@ block content
       img.cta__img.cta__img--1(src=`/img/tours/${tour.images[1]}`, alt='Tour picture')
       img.cta__img.cta__img--2(src=`/img/tours/${tour.images[2]}`, alt='Tour picture')
       .cta__content
-        h2.heading-secondary What are you waiting for?
-        p.cta__text= `${tour.duration} days. 1 adventure. Infinite memories. Make it yours today!`
+        h2.heading-secondary#booking-box-heading What are you waiting for?
+        p.cta__text#booking-box-text= `${tour.duration} days. 1 adventure. Infinite memories. Make it yours today!`
         
         - const is_in = [];
         - if (user) {
@@ -99,26 +99,26 @@ block content
         -     in_time_to_book.push( ( (Date.now() / 1000) + 7 * 86400 ) < ( tour.startDates[j].getTime() / 1000 ) );
         -   }
               
-        if in_time_to_book.includes(true) === true
+      if in_time_to_book.includes(true) === true
 
-          if user && (is_in.includes(true) === false || too_late.includes(false) === false)
-              each startDate in tour.startDates
-                div(style='display:grid; margin:auto; width:80%')
-                  if ((Date.now() / 1000) + 7 * 86400) < (startDate.getTime() / 1000 )
-                    button.btn.btn--green.span-all-rows#book-tour(style='text-align:center; top:auto; margin:auto; padding:auto; width:80%; height:auto; display:inline-block' data-Id=`${tour.id}`)=`Book tour for ${startDate.toLocaleDateString('en-US')} now!` 
-                  else 
-                    button.btn.btn--green.span-all-rows(style='text-align:center; top:auto; margin:auto; padding:auto; width:80%; height:auto; display:inline-block' data-Date=`${tourDate}`)=`This date is no longer available! (${startDate.toLocaleDateString('en-US')})` 
+        if user && (is_in.includes(true) === false || too_late.includes(false) === false)
+          div.side-nav--active(style='margin:auto; width:75%; height:108px; display:grid')
+            each startDate in tour.startDates
+                //-div(style='display:grid; margin:auto; width:80%')
+                if ((Date.now() / 1000) + 7 * 86400) < (startDate.getTime() / 1000 )
+                  button.btn.btn--green.span-all-rows#book-tour(style='margin:18px' data-Id=`${tour.id}`)=`Book tour for ${startDate.toLocaleDateString('en-US', {month: 'long', year: 'numeric', day: 'numeric'})} now!` 
+                else 
+                  //-width:80%; height:auto; display:inline-block margin:auto;
+                  p(style='margin:auto; height:40px; font-size:20px; font-weight:bold' data-Date=`${tourDate}`)=`This date is no longer available! (${startDate.toLocaleDateString('en-US')})` 
 
-          if user && is_in.includes(true) && too_late.includes(false) === true
-            a.btn.btn--green.span-all-rows#go-to-my-bookings(href='/my-tours') Go to My bookings 
+        if user && is_in.includes(true) && too_late.includes(false) === true 
+          a.btn.btn--green.span-all-rows#go-to-my-bookings(href='/my-tours' style='margin:10px') Go to My bookings 
 
-          if !user 
-            a.btn.btn--green.span-all-rows(href='/login') Log in to book tour
+        if !user 
+          a.btn.btn--green.span-all-rows(href='/login') Log in to book tour
 
-        else
-          p.cta__text Too late,
-          p.cta__text wait for new tour dates!
-          
+      else
+        p.cta__text(style='font-weight:bold') No dates available at the moment, please wait for updates.
 
         
         

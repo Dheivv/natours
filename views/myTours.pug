@@ -10,7 +10,7 @@ block content
                         if too_late[tour.id].includes(false) === true
 
                         else 
-                            a.btn-very-small(id=`${tour.slug}`) HIDE
+                            a.btn-very-small(id=`${tour.slug}` style='width:auto; height:auto') HIDE
 
                         .card__picture
                             .card__picture-overlay &nbsp;
@@ -69,4 +69,4 @@ block content
                                 a.btn.btn--green.btn--small(href=`/leave-review/${tour.id}`) Leave review
                         
                         else
-                            a.btn.btn--green.btn--small(href='/my-reviews' style='text-align:center') Go to My reviews
+                            a.btn.btn--green.btn--small(href='/my-reviews' style='text-align:center; width:75%') Go to My reviews

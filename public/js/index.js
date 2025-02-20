@@ -12,9 +12,12 @@ import { additionalInfo } from './additionalInfo.js';
 // DOM ELEMENTS
 const mapBox = document.getElementById('map');
 const loginForm = document.querySelector('.form--login');
+const loginBtn = document.getElementById('login');
 const logOutBtn = document.querySelector('.nav__el--logout');
 const signupForm = document.querySelector('.form--signup');
+const signupBtn = document.getElementById('signup');
 const reviewForm = document.querySelector('.form--review');
+const reviewBtn = document.getElementById('submit-review');
 const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
 //const bookBtn = document.getElementById('book-tour');
@@ -35,7 +38,8 @@ if (loginForm) {
     e.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    login(email, password);
+    loginBtn.textContent = 'processing...';
+    login(email, password, loginBtn);
   });
 }
 
@@ -48,7 +52,8 @@ if (signupForm) {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const passwordConfirm = document.getElementById('passwordConfirm').value;
-    signup(name, email, password, passwordConfirm);
+    signupBtn.textContent = 'Processing...';
+    signup(name, email, password, passwordConfirm, signupBtn);
   });
 }
 
@@ -86,13 +91,12 @@ if (userPasswordForm) {
 if (reviewForm) {
   reviewForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-
     const review = document.getElementById('review').value;
     const rating = document.getElementById('rating').value;
     const tour = window.location.pathname.split('/')[2];
     const user = document.getElementById('leave-review').dataset.id;
-
-    await leaveReview(review, rating, tour, user);
+    reviewBtn.textContent = 'processing...';
+    await leaveReview(review, rating, tour, user, reviewBtn);
   });
 }
 

@@ -6132,7 +6132,7 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; } /* eslint-disable */
 var login = exports.login = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(email, password) {
+  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(email, password, button) {
     var res;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
@@ -6152,23 +6152,25 @@ var login = exports.login = /*#__PURE__*/function () {
           // console.log(res);
           if (res.data.status === 'success') {
             (0, _alerts.showAlert)('success', 'Logged in successfully!');
+            button.textContent = 'Login';
             window.setTimeout(function () {
               location.assign('/');
             }, 1500);
           }
-          _context.next = 10;
+          _context.next = 11;
           break;
         case 7:
           _context.prev = 7;
           _context.t0 = _context["catch"](0);
           (0, _alerts.showAlert)('error', _context.t0.response.data.message);
-        case 10:
+          button.textContent = 'Login';
+        case 11:
         case "end":
           return _context.stop();
       }
     }, _callee, null, [[0, 7]]);
   }));
-  return function login(_x, _x2) {
+  return function login(_x, _x2, _x3) {
     return _ref.apply(this, arguments);
   };
 }();
@@ -6219,7 +6221,7 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; } /* eslint-disable */
 var signup = exports.signup = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(name, email, password, passwordConfirm) {
+  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(name, email, password, passwordConfirm, button) {
     var res;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
@@ -6241,23 +6243,25 @@ var signup = exports.signup = /*#__PURE__*/function () {
           // console.log(res);
           if (res.data.status === 'success') {
             (0, _alerts.showAlert)('success', 'Signed up successfully! Check your email for confirmation');
+            button.textContent = 'Signup';
             window.setTimeout(function () {
               location.assign('/');
             }, 1500);
           }
-          _context.next = 10;
+          _context.next = 11;
           break;
         case 7:
           _context.prev = 7;
           _context.t0 = _context["catch"](0);
           (0, _alerts.showAlert)('error', _context.t0.response.data.message);
-        case 10:
+          button.textContent = 'Signup';
+        case 11:
         case "end":
           return _context.stop();
       }
     }, _callee, null, [[0, 7]]);
   }));
-  return function signup(_x, _x2, _x3, _x4) {
+  return function signup(_x, _x2, _x3, _x4, _x5) {
     return _ref.apply(this, arguments);
   };
 }();
@@ -6326,7 +6330,7 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; } /* eslint-disable */
 var leaveReview = exports.leaveReview = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(review, rating, tour, user) {
+  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(review, rating, tour, user, button) {
     var res;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
@@ -6347,23 +6351,25 @@ var leaveReview = exports.leaveReview = /*#__PURE__*/function () {
           res = _context.sent;
           if (res.data.status === 'success') {
             (0, _alerts.showAlert)('success', 'Review created successfully!');
+            button.textContent = 'Confirm';
             window.setTimeout(function () {
               location.assign('/my-reviews');
             }, 1500);
           }
-          _context.next = 10;
+          _context.next = 11;
           break;
         case 7:
           _context.prev = 7;
           _context.t0 = _context["catch"](0);
           (0, _alerts.showAlert)('error', _context.t0.response.data.message);
-        case 10:
+          button.textContent = 'Confirm';
+        case 11:
         case "end":
           return _context.stop();
       }
     }, _callee, null, [[0, 7]]);
   }));
-  return function leaveReview(_x, _x2, _x3, _x4) {
+  return function leaveReview(_x, _x2, _x3, _x4, _x5) {
     return _ref.apply(this, arguments);
   };
 }();
@@ -6481,9 +6487,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 // DOM ELEMENTS
 var mapBox = document.getElementById('map');
 var loginForm = document.querySelector('.form--login');
+var loginBtn = document.getElementById('login');
 var logOutBtn = document.querySelector('.nav__el--logout');
 var signupForm = document.querySelector('.form--signup');
+var signupBtn = document.getElementById('signup');
 var reviewForm = document.querySelector('.form--review');
+var reviewBtn = document.getElementById('submit-review');
 var userDataForm = document.querySelector('.form-user-data');
 var userPasswordForm = document.querySelector('.form-user-password');
 //const bookBtn = document.getElementById('book-tour');
@@ -6501,7 +6510,8 @@ if (loginForm) {
     e.preventDefault();
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
-    (0, _login.login)(email, password);
+    loginBtn.textContent = 'processing...';
+    (0, _login.login)(email, password, loginBtn);
   });
 }
 if (logOutBtn) logOutBtn.addEventListener('click', _login.logout);
@@ -6512,7 +6522,8 @@ if (signupForm) {
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
     var passwordConfirm = document.getElementById('passwordConfirm').value;
-    (0, _signup.signup)(name, email, password, passwordConfirm);
+    signupBtn.textContent = 'Processing...';
+    (0, _signup.signup)(name, email, password, passwordConfirm, signupBtn);
   });
 }
 if (userDataForm) {
@@ -6571,9 +6582,10 @@ if (reviewForm) {
             rating = document.getElementById('rating').value;
             tour = window.location.pathname.split('/')[2];
             user = document.getElementById('leave-review').dataset.id;
-            _context2.next = 7;
-            return (0, _leaveReview.leaveReview)(review, rating, tour, user);
-          case 7:
+            reviewBtn.textContent = 'processing...';
+            _context2.next = 8;
+            return (0, _leaveReview.leaveReview)(review, rating, tour, user, reviewBtn);
+          case 8:
           case "end":
             return _context2.stop();
         }
@@ -6673,7 +6685,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51884" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49341" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

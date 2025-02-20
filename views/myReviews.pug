@@ -3,7 +3,9 @@ include _reviewCardMyReviews
 
 block content
   section
+    a.btn.btn--green.span-all-rows(href='/my-tours' style='top:15px') Go to my bookings
     .reviews
+
       if reviews.length < 1
         h.reviews__text(style='text-align:center; font-size:40px')  Uh oh, looks like it's empty!
       
