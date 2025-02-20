@@ -6486,7 +6486,8 @@ var signupForm = document.querySelector('.form--signup');
 var reviewForm = document.querySelector('.form--review');
 var userDataForm = document.querySelector('.form-user-data');
 var userPasswordForm = document.querySelector('.form-user-password');
-var bookBtn = document.getElementById('book-tour');
+//const bookBtn = document.getElementById('book-tour');
+var bookBtn = document.querySelectorAll('#book-tour');
 var footerLinks = document.querySelector('.footer__nav');
 var deleteExpiredBookingBtn = document.querySelectorAll('.btn-very-small');
 
@@ -6583,13 +6584,25 @@ if (reviewForm) {
     };
   }());
 }
+
+/*
 if (bookBtn) {
-  bookBtn.addEventListener('click', function (e) {
+  bookBtn.addEventListener('click', (e) => {
     e.target.textContent = 'Processing...';
-    var tourId = e.target.dataset.tourId;
-    (0, _stripe.bookTour)(tourId);
+    const { tourId } = e.target.dataset;
+    bookTour(tourId);
   });
 }
+*/
+
+_toConsumableArray(bookBtn).forEach(function (item) {
+  item.addEventListener('click', function (e) {
+    e.preventDefault();
+    item.textContent = 'Processing...';
+    var tourId = item.dataset.id;
+    (0, _stripe.bookTour)(tourId);
+  });
+});
 var alertMessage = document.querySelector('body').dataset.alert;
 if (alertMessage && alertMessage != '') (0, _alerts.showAlert)('success', alertMessage, 20);
 footerLinks.addEventListener('click', function () {
@@ -6660,7 +6673,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59337" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51884" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

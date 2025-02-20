@@ -17,7 +17,8 @@ const signupForm = document.querySelector('.form--signup');
 const reviewForm = document.querySelector('.form--review');
 const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
-const bookBtn = document.getElementById('book-tour');
+//const bookBtn = document.getElementById('book-tour');
+const bookBtn = document.querySelectorAll('#book-tour');
 const footerLinks = document.querySelector('.footer__nav');
 const deleteExpiredBookingBtn = document.querySelectorAll('.btn-very-small');
 
@@ -95,6 +96,7 @@ if (reviewForm) {
   });
 }
 
+/*
 if (bookBtn) {
   bookBtn.addEventListener('click', (e) => {
     e.target.textContent = 'Processing...';
@@ -102,6 +104,16 @@ if (bookBtn) {
     bookTour(tourId);
   });
 }
+*/
+
+[...bookBtn].forEach((item) => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    item.textContent = 'Processing...';
+    const tourId = item.dataset.id;
+    bookTour(tourId);
+  });
+});
 
 const alertMessage = document.querySelector('body').dataset.alert;
 if (alertMessage && alertMessage != '') showAlert('success', alertMessage, 20);
